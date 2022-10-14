@@ -1,6 +1,7 @@
 import std.stdio, std.math,std.typecons;
 import std.conv, std.format;
-import std.array;
+import std.array,std.json;
+import clid;
 
 const double G=9.8;
 
@@ -65,13 +66,35 @@ unittest
 	);
 }
 
+private struct CLIConfig
+{
+  	@Parameter("v0")
+	string v0;
+
+  	@Parameter("sita",'s')
+	string sita;
+
+  	@Parameter("json",'j')
+	bool Is_json;
+}
+
 
 void main()
 {
-	write("v0(m/s) >");
-	auto v0=readln.split[0].to!double;
-	write("Sita(Degree) >");
-	auto sita=readln.split[0].to!double;
+	auto param=parseArguments!CLIConfig();
+
+	double v0;
+	double sita;
+
+	if(param.v0==""||param.sita==""){
+		write("v0(m/s) >");
+		v0=readln.split[0].to!double;
+		write("Sita(Degree) >");
+		sita=readln.split[0].to!double;
+	}else{
+		v0=param.v0.to!double;
+		sita=param.sita.to!double;
+	}
 
 	auto v=Disassemble_from_sita_and_v0(v0,sita);
 	auto t=Get_time_in_sky(v);
@@ -80,8 +103,16 @@ void main()
 
 	writeln();
 
-	writefln("Flight time : %ss",t);
-	writefln("Length : %sm",l);
-	writefln("Expressed as a formula : %s",eval_str);
-
+	if(!param.Is_json){
+		writefln("Flight time : %ss",t);
+		writefln("Length : %sm",l);
+		writefln("Expressed as a formula : %s",eval_str);
+	}else{
+		JSONValue json_data = [
+			"FlightTime":format("%s",t),
+			"Length":format("%s",l),
+			"ExpressedAsFormula":format("%s",eval_str),
+		];
+		writeln(json_data.toString);
+	}
 }

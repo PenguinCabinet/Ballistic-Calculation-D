@@ -3,6 +3,9 @@
 		"PenguinCabinet"
 	],
 	"copyright": "Copyright © 2022, PenguinCabinet",
+	"dependencies": {
+		"cli-d": "~>0.1.1"
+	},
 	"description": "For ballistic calculations",
 	"license": "MIT LICENSE",
 	"name": "ballistic-calculation-d"
