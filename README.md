@@ -12,7 +12,7 @@ dub build
 
 ### --v0オプションで初速度(m/s)、--sitaオプションで角度(度)を指定できます。
 ```bash
->ballistic-calculation-d.exe --v0 10 --sita 45
+>ballistic-calculation-d --v0 10 --sita 45
 
 Flight time : 1.44308s
 Length : 10.2041m
@@ -21,7 +21,7 @@ Expressed as a formula : x(x-10.2041)=0
 
 ### 対話的に実行することもできます。
 ```bash
->ballistic-calculation-d.exe
+>ballistic-calculation-d
 v0(m/s) >10
 Sita(Degree) >45
 
@@ -32,7 +32,7 @@ Expressed as a formula : x(x-10.2041)=0
 
 ### また、jsonとして出力することもできます。
 ```bash
->ballistic-calculation-d.exe --v0 10 --sita 45 --json
+>ballistic-calculation-d --v0 10 --sita 45 --json
 
 {"ExpressedAsFormula":"x(x-10.2041)=0","FlightTime":"1.44308","Length":"10.2041"}
 ```
