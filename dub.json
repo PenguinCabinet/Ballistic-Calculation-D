@@ -1,0 +1,9 @@
+{
+	"authors": [
+		"PenguinCabinet"
+	],
+	"copyright": "Copyright © 2022, PenguinCabinet",
+	"description": "For ballistic calculations",
+	"license": "MIT LICENSE",
+	"name": "ballistic-calculation-d"
+}
